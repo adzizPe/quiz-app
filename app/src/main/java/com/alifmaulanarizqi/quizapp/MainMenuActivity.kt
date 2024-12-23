@@ -8,10 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AlphaAnimation
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.Toast
-import android.widget.VideoView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -20,6 +17,8 @@ class MainMenuActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var videoBackground: VideoView
     private var isBgmPlaying = true
+    private var isSfxEnabled = true // SFX default aktif
+    private var sfxPlayer: MediaPlayer? = null // MediaPlayer untuk SFX
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,23 +53,27 @@ class MainMenuActivity : AppCompatActivity() {
 
         // Tombol Mulai
         btnStart.setOnClickListener {
+            playSFX() // Mainkan SFX
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
         // Tombol Pengaturan
         btnSettings.setOnClickListener {
-            showVolumeDialog()
+            playSFX() // Mainkan SFX
+            showSettingsDialog()
         }
 
         // Tombol Credit
         btnCredit.setOnClickListener {
+            playSFX() // Mainkan SFX
             val intent = Intent(this, CreditActivity::class.java)
             startActivity(intent)
         }
 
         // Tombol Exit
         btnExit.setOnClickListener {
+            playSFX() // Mainkan SFX
             showExitDialog()
         }
     }
@@ -103,8 +106,6 @@ class MainMenuActivity : AppCompatActivity() {
         videoBackground.start()
     }
 
-
-
     private fun setUpBackgroundMusic() {
         mediaPlayer = MediaPlayer.create(this, R.raw.musichappy).apply {
             isLooping = true // Musik akan diulang
@@ -120,10 +121,14 @@ class MainMenuActivity : AppCompatActivity() {
         button.startAnimation(fadeInOut)
     }
 
-    private fun showVolumeDialog() {
+    private fun showSettingsDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Kontrol Volume BGM")
+        builder.setTitle("Pengaturan")
 
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+
+        // Kontrol Volume BGM
         val volumeSeekBar = SeekBar(this)
         volumeSeekBar.max = 100
         volumeSeekBar.progress = 50
@@ -139,7 +144,21 @@ class MainMenuActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
-        builder.setView(volumeSeekBar)
+        layout.addView(TextView(this).apply { text = "Kontrol Volume BGM"; textSize = 16f })
+        layout.addView(volumeSeekBar)
+
+        // Toggle SFX
+        val sfxToggle = CheckBox(this).apply {
+            text = "Aktifkan SFX"
+            isChecked = isSfxEnabled
+            setOnCheckedChangeListener { _, isChecked ->
+                isSfxEnabled = isChecked
+            }
+        }
+
+        layout.addView(sfxToggle)
+
+        builder.setView(layout)
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
@@ -156,6 +175,19 @@ class MainMenuActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         builder.show()
+    }
+
+    private fun playSFX() {
+        if (isSfxEnabled) { // Periksa apakah SFX diaktifkan
+            try {
+                sfxPlayer?.release() // Lepaskan SFX sebelumnya jika ada
+                sfxPlayer = MediaPlayer.create(this, R.raw.bruh).apply {
+                    start()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error playing SFX: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onPause() {
@@ -175,5 +207,7 @@ class MainMenuActivity : AppCompatActivity() {
         videoBackground.stopPlayback() // Hentikan pemutaran video
         mediaPlayer?.release() // Bersihkan MediaPlayer
         mediaPlayer = null
+        sfxPlayer?.release() // Bersihkan SFX Player
+        sfxPlayer = null
     }
 }
