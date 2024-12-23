@@ -1,0 +1,8 @@
+<resources>
+    <style name="HintTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">14sp</item> <!-- Ukuran teks hint -->
+        <item name="android:textColor">@android:color/darker_gray</item> <!-- Warna teks hint -->
+    </style>
+    <string name="app_name">QuizApp</string>
+    <string name="welcome">Welcome!</string>
+</resources>

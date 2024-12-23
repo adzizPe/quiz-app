@@ -1,0 +1,19 @@
+<resources>
+    <style name="Theme.QuizApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Warna utama -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- Warna latar belakang -->
+        <item name="android:colorBackground">@color/black</item>
+
+        <!-- Status bar dan action bar -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:statusBarColor">@color/black</item>
+
+        <!-- Kustomisasi lainnya -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

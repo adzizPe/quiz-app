@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Video Background -->
+    <VideoView
+        android:id="@+id/videoBackground"
+        android:layout_width="1080dp"
+        android:layout_height="1920dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true" />
+
+    <!-- Konten Menu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logoapk"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="31dp"
+            android:contentDescription="@string/app_name" />
+
+        <!-- Nama Aplikasi -->
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Quiz Planet"
+            android:textSize="30sp"
+            android:textStyle=""
+            android:textColor="@color/white"
+            android:shadowColor="@color/biru"
+            android:shadowDx="300"
+            android:shadowDy="300"
+
+
+            android:padding="7dp" />
+
+
+
+        <!-- Spacer -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <!-- Tombol Menu -->
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Masukkan nama"
+            android:textSize="18sp"
+            android:background="@drawable/space_button"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Pengaturan"
+            android:textSize="18sp"
+            android:background="@drawable/space_button"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="About"
+            android:textSize="18sp"
+            android:background="@drawable/space_button"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exit"
+            android:textSize="18sp"
+            android:background="@drawable/space_button"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/primary_color"
+    tools:context=".QuestionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- Timer untuk soal -->
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Time left: 25s"
+            android:textColor="@color/white2"
+            android:textSize="16sp" />
+
+        <!-- Pertanyaan -->
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/white2"
+            tools:text="This is question" />
+
+        <!-- Gambar pertanyaan -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:cardCornerRadius="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/light_primary_color">
+
+            <ImageView
+                android:id="@+id/ivQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:contentDescription="Quiz Image"
+                tools:src="@drawable/earth" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Progress bar dan progress teks -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="false"
+                android:max="11"
+                android:minHeight="50dp"
+                android:progress="5" />
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:textColor="@color/white2"
+                android:textSize="14sp"
+                tools:text="5/11" />
+
+        </LinearLayout>
+
+        <!-- Pilihan jawaban -->
+        <TextView
+            android:id="@+id/tvOptionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            tools:text="Option One"
+            android:textColor="@color/white3"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvOptionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            tools:text="Option Two"
+            android:textColor="@color/white3"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvOptionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            tools:text="Option Three"
+            android:textColor="@color/white3"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvOptionFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            tools:text="Option Four"
+            android:textColor="@color/white3"
+            android:textSize="18sp" />
+
+        <!-- Tombol submit -->
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="14dp"
+            android:text="Submit"
+            android:textSize="16sp"
+            android:textColor="@color/white2"
+            android:backgroundTint="@color/secondary_color" />
+
+    </LinearLayout>
+
+</ScrollView>
