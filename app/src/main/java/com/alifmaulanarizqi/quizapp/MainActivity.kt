@@ -77,30 +77,29 @@ class MainActivity : AppCompatActivity() {
         videoBackground.setVideoURI(videoUri)
 
         videoBackground.setOnPreparedListener { mediaPlayer ->
-            mediaPlayer.isLooping = true // Aktifkan looping
-            mediaPlayer.setOnInfoListener { _, what, _ ->
-                if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                    // Animasi fade-in
-                    ObjectAnimator.ofFloat(videoBackground, "alpha", 0.0f, 1.0f).apply {
-                        duration = 1000 // Durasi 1 detik
-                        start()
+            mediaPlayer.isLooping = false // Matikan looping bawaan
+            mediaPlayer.setOnSeekCompleteListener {
+                videoBackground.start() // Mulai ulang tanpa jeda
+            }
+
+            // Gunakan listener untuk mendeteksi saat hampir selesai
+            Thread {
+                while (true) {
+                    try {
+                        if (mediaPlayer.isPlaying && mediaPlayer.currentPosition >= mediaPlayer.duration - 100) {
+                            videoBackground.seekTo(0) // Kembali ke awal sebelum selesai
+                        }
+                        Thread.sleep(50) // Periksa setiap 50ms
+                    } catch (e: Exception) {
+                        break
                     }
                 }
-                true
-            }
+            }.start()
         }
 
-        videoBackground.setOnCompletionListener {
-            videoBackground.start() // Loop video
-        }
-
-        videoBackground.setOnErrorListener { _, _, _ ->
-            Toast.makeText(this, "Error loading video background.", Toast.LENGTH_SHORT).show()
-            true
-        }
-
-        videoBackground.start() // Mulai video
+        videoBackground.start()
     }
+
 
 
     private fun setUpBackgroundMusic() {
