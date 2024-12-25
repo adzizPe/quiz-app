@@ -15,6 +15,33 @@
         android:gravity="center"
         android:padding="16dp">
 
+        <!-- Menampilkan Koin -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <!-- Icon Koin -->
+            <ImageView
+                android:id="@+id/ivCoin"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/koin"
+            android:contentDescription="Coin Icon"
+            android:layout_marginEnd="8dp" />
+
+            <!-- Jumlah Koin -->
+            <TextView
+                android:id="@+id/tvCoinCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coins: 0"
+                android:textColor="@color/white2"
+                android:textSize="16sp" />
+        </LinearLayout>
+
         <!-- Timer untuk soal -->
         <TextView
             android:id="@+id/timerText"
@@ -44,7 +71,8 @@
             android:layout_height="200dp"
             app:cardCornerRadius="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/light_primary_color">
+            android:backgroundTint="@color/light_primary_color"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/ivQuestion"
@@ -53,7 +81,6 @@
                 android:layout_margin="12dp"
                 android:contentDescription="Quiz Image"
                 tools:src="@drawable/earth" />
-
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Progress bar dan progress teks -->
@@ -84,7 +111,6 @@
                 android:textColor="@color/white2"
                 android:textSize="14sp"
                 tools:text="5/11" />
-
         </LinearLayout>
 
         <!-- Pilihan jawaban -->

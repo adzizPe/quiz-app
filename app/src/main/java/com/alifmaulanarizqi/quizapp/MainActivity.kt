@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 animateButton(btnStart) {
                     val intent = Intent(this, QuestionActivity::class.java)
-                    intent.putExtra("USER_NAME", name)
+                    intent.putExtra("USER_NAME_KEY", name)
                     startActivity(intent)
                     finish()
                 }
