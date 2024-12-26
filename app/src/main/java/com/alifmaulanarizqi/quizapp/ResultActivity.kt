@@ -50,10 +50,13 @@ class ResultActivity : AppCompatActivity() {
 
         tvScore.text = "Your score is $totalScores out of $totalQuestions"
 
+
         btnFinish.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish() // Tutup aktivitas saat kembali ke MainActivity
         }
+
+
     }
 
     override fun onPause() {
