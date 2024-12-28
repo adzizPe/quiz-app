@@ -32,7 +32,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mUserName: String
     private lateinit var mQuestionList: ArrayList<Question>
     private var countDownTimer: CountDownTimer? = null // Timer
-    private val questionDuration: Long = 25000 // Durasi tiap soal: 25 detik
+    private val questionDuration: Long = 15000 // Durasi tiap soal: 15 detik
 
     private var mediaPlayer: MediaPlayer? = null // Musik latar belakang (BGM)
 
