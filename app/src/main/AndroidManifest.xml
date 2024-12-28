@@ -16,6 +16,9 @@
         android:theme="@style/Theme.QuizApp">
 
         <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2047280217150875~3141249832" />
+        <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true" />
 

@@ -16,9 +16,12 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var adView: AdView
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var videoBackground: VideoView
 
@@ -27,6 +30,16 @@ class MainActivity : AppCompatActivity() {
 
         // Set layout
         setContentView(R.layout.activity_main)
+
+        // Inisialisasi AdMob
+        MobileAds.initialize(this) { }
+
+        // Hubungkan adView dengan elemen di layout XML
+        adView = findViewById(R.id.adView)
+
+        // Buat permintaan iklan dan muat iklan
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         // Hilangkan Action Bar dan Status Bar
         window.decorView.systemUiVisibility = (
