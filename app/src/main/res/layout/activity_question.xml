@@ -24,22 +24,10 @@
             android:layout_marginBottom="16dp">
 
             <!-- Icon Koin -->
-            <ImageView
-                android:id="@+id/ivCoin"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/koin"
-            android:contentDescription="Coin Icon"
-            android:layout_marginEnd="8dp" />
+
 
             <!-- Jumlah Koin -->
-            <TextView
-                android:id="@+id/tvCoinCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coins: 0"
-                android:textColor="@color/white2"
-                android:textSize="16sp" />
+            
         </LinearLayout>
 
         <!-- Timer untuk soal -->
