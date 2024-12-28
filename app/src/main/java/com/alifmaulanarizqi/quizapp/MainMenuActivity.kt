@@ -11,9 +11,16 @@ import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.InterstitialAdLoadCallback
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
 
 class MainMenuActivity : AppCompatActivity() {
-
+    private var interstitialAd: InterstitialAd? = null
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var videoBackground: VideoView
     private var isBgmPlaying = true
@@ -31,7 +38,17 @@ class MainMenuActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setContentView(R.layout.activity_main_menu)
+        // Inisialisasi AdMob SDK
+        MobileAds.initialize(this)
 
+        // Muat iklan interstitial
+        loadInterstitialAd()
+
+        // Tombol contoh untuk menampilkan iklan
+        val btnShowAd: Button = findViewById(R.id.btnShowAd)
+        btnShowAd.setOnClickListener {
+            showInterstitialAd()
+        }
         // Inisialisasi Video Background
         videoBackground = findViewById(R.id.videoBackground)
         setUpVideoBackground()
