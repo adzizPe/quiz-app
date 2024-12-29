@@ -11,10 +11,10 @@ import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.InterstitialAdLoadCallback
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -136,6 +136,47 @@ class MainMenuActivity : AppCompatActivity() {
         fadeInOut.repeatCount = AlphaAnimation.INFINITE
         fadeInOut.repeatMode = AlphaAnimation.REVERSE
         button.startAnimation(fadeInOut)
+    }
+    private fun loadInterstitialAd() {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(
+            this,
+            "ca-app-pub-2047280217150875/1986351777", // Ganti dengan ID Iklan Anda
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    interstitialAd = ad
+                    interstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            interstitialAd = null
+                            loadInterstitialAd() // Muat ulang iklan setelah ditutup
+                        }
+
+                        override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                            interstitialAd = null
+                        }
+
+                        override fun onAdShowedFullScreenContent() {
+                            interstitialAd = null
+                        }
+                    }
+                    Toast.makeText(this@MainMenuActivity, "Iklan berhasil dimuat", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    interstitialAd = null
+                    Toast.makeText(this@MainMenuActivity, "Gagal memuat iklan: ${adError.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
+    private fun showInterstitialAd() {
+        if (interstitialAd != null) {
+            interstitialAd?.show(this)
+        } else {
+            Toast.makeText(this, "Iklan belum dimuat", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showSettingsDialog() {

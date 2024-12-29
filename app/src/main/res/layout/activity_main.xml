@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-2047280217150875/4120694554" />
+                ads:adUnitId="ca-app-pub-2047280217150875/4120694554"/>
 
 
             <ImageView

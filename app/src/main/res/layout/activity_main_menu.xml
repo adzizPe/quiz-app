@@ -92,5 +92,12 @@
             android:textSize="18sp"
             android:background="@drawable/space_button"
             android:textColor="@android:color/black" />
+        <Button
+            android:id="@+id/btnShowAd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tampilkan Iklan"
+            android:layout_gravity="center" />
+
     </LinearLayout>
 </RelativeLayout>
